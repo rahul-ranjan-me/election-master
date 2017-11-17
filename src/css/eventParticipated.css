@@ -1,0 +1,15 @@
+.eventParticipated{
+    text-align: center
+}
+
+.eventParticipated h3{
+    margin-top: 0
+}
+
+.eventParticipated .badge{
+    font-size: 50px;
+    padding: 12px 9px;
+    width: 81px;
+    height: 81px;
+    border-radius: 50px;
+}

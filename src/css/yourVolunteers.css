@@ -1,0 +1,12 @@
+.yourVolunteer h3{
+    margin-top:0
+}
+
+.yourVolunteer p:last-child{
+    padding-top:5px;
+    border-top:1px solid #ccc
+}
+
+.yourVolunteer .badge{
+    float: right
+}

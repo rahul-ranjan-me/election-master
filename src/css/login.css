@@ -1,0 +1,113 @@
+.login-container-outer{
+    height: 100%;
+    background: url(http://www.freeworldmaps.net/asia/india/india.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.login-container-block{
+    display:table;
+    height: 100%;
+    width: 30%;
+    margin: 0 auto;
+}
+
+.login-container{
+    display:table-cell;
+    vertical-align: middle;
+}
+
+.login-container h2{
+    text-align: center;
+    background: rgba(240,173,78, .9);
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 0;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    font-style: italic;
+}
+
+.login-container h2 span{
+    font-weight: normal;
+    color: rgba(255, 255, 255, .5);
+    
+}
+
+.login-block{
+    background-color: rgba(255, 255, 255, .95);
+    margin: 0;
+    padding:20px;
+    -webkit-box-shadow: 0 2px 18px -2px black;
+    box-shadow: 0 2px 18px -2px black;
+    display: table;
+    width:100%;
+}
+
+.signup{
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background: #3c763d;
+    padding: 15px;
+    color: #fff;
+}
+
+.signup p{
+    margin-bottom:0
+}
+
+.signup a{
+    color:#fff;
+    text-decoration:underline;
+}
+
+.signup a:hover{
+    text-decoration: none;
+    color:#fff;
+}
+
+.login-block h3{
+    margin:0
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form select{
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 
+}
+
+.error{
+    padding: 10px;
+    background: #e65757;
+    margin: 10px;
+    margin-bottom:0;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.login-form .control-group{
+    width: 100%;
+    display: inline-block;
+    float: left;
+    padding:5px;
+}
+
+.login-form .control-group:last-child{
+    clear: both;
+    margin-top:15px;
+}
+
+.signup-section{
+    background: rgba(0, 0, 0, .05);
+    height: 279px;
+    display: table;
+    text-align: center;
+}
+
+.signup-section > div{
+    display: table-cell;
+    vertical-align: middle
+}

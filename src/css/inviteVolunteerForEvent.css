@@ -1,0 +1,47 @@
+.inviteVolunteerForEvent{
+    background: #ececec;
+    padding: 20px 20px 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.inviteVolunteerForEvent h3:first-child{
+    margin-top: 0
+}
+
+.inviteVolunteerForEvent input[type="text"]{
+    width: 80%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px
+}
+
+.inviteVolunteerForEvent .control-group{
+    margin-bottom: 10px
+}
+
+.inviteVolunteerForEvent .dropdown{
+    background: #fff;
+    list-style-type: none;
+    padding: 10px;
+    font-size: 16px;
+    width: auto;
+    display: inline-block;
+}
+
+.inviteVolunteerForEvent .dropdown-menu{
+    min-width:285px
+}
+
+#chooseEventVolunteers{
+    padding: 10px;
+    color: #333;
+}
+
+.inviteVolunteerForEvent form{
+    padding: 20px;
+}
+
+.inviteVolunteerForEvent button{
+    margin-top:10px
+}

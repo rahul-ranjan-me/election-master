@@ -1,0 +1,10 @@
+.resendInvite input[type="text"]{
+    width: 80%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius:5px
+}
+
+.resendInvite button{
+    margin-top: 10px;
+}

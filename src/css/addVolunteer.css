@@ -1,0 +1,13 @@
+.add-volunteer-form input[type="text"]{
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 
+}
+
+.add-volunteer-form .control-group{
+    margin-bottom: 15px;
+    width: 50%;
+    display: inline-block;
+    float: left;
+}

@@ -1,0 +1,34 @@
+.signup-form input[type="text"],
+.signup-form input[type="password"],
+.signup-form select{
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 
+}
+
+.signup-form .control-group{
+    margin-bottom: 15px;
+    width: 50%;
+    display: inline-block;
+    float: left;
+    padding: 0 20px 0 0
+}
+
+.signup-container .login-container-block{
+    width:70%
+}
+
+.signup-container .login-block{
+    padding:20px 0 20px 20px;
+}
+
+.signup-scroll{
+    max-height:450px;
+    overflow-y:auto;
+}
+
+.signup-form .control-group:last-child{
+    clear: both;
+    width:100%;
+}

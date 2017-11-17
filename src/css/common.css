@@ -1,0 +1,39 @@
+html, body, #root, .top-component{
+    height: 100%;
+    width: 100%
+}
+
+.control-label{
+    margin-bottom:0;
+}
+
+@media only screen and (max-width: 992px) {
+    
+    .row .first-column-home > div.topRow-home {
+        border-bottom: none;
+    }
+
+    .row .first-column-home .topRow-home > div{
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+        border-left: none
+    }
+
+    .row .first-column-home .topRow-home > div:first-child{
+        border-left: none
+    }
+
+    .quickAddVolunteers .container .row > div:nth-child(2){
+        border-bottom: 1px solid #ccc;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        margin-top: 20px;
+        border-top: 1px solid #ccc;
+    }
+
+    .footer span.copyRight{
+        display: block;
+        float: none;
+    }
+}

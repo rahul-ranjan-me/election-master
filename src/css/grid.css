@@ -1,0 +1,126 @@
+
+/* ************************************
+Grid CSS starts here 
+************************************ */
+
+.table{
+    width: 100%;
+    background-color:#fff;
+}
+
+.table ul{
+    list-style-type:none;
+    padding-left: 0
+}
+
+.table li.tableRow,
+.table li.tableRow.tableSubChildren{
+    margin: 0 0 0;
+    width: 100%
+}
+
+.table .cols-heading + ul{
+    margin-left: 0
+}
+
+.table .cols-heading li.tableRow{
+    display:table;
+    border-bottom: none;
+    font-weight: bold;
+}
+
+.table li.tableRow div.rowContainer{
+    display: table;
+    width: 100%
+}
+
+.table li.tableChildren{
+    cursor: pointer;
+}
+
+.table li.tableChildren:hover{
+    background-color: #FBF3F9
+}
+
+.table li.tableRow div.rowContainer ul{
+    width: 100%
+}
+
+.table li.tableRow, .table li.tableRow.tableSubChildren{
+    display: table;
+    border-bottom: 1px solid #eee;
+}
+
+.table li.tableRow.tableHeading{
+    border-bottom: none;
+}
+
+.table .tableHeading span.cell{
+    border-radius: 1px solid #777;
+    border-top: 1px solid #777;
+    cursor: default;
+    position: relative;
+}
+
+.table .tableHeading span.cell span{
+    font-weight: bold
+}
+
+.table span.cell,
+.table span.disable{
+    display: table-cell;
+    width: 30px;
+    padding: 5px
+}
+
+.table .toogleRow{
+    cursor: pointer;
+}
+
+.cols-heading{
+    margin: 0;
+    border-bottom: 1px solid #ccc
+}
+
+.cols-heading.tableHeading{
+    font-weight: bold;
+}
+
+.glyphicon.glyphicon-menu-right.glyphicon-menu-right-show{
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.table .tableHeading span.sorted:before{
+    background-color: #AD1982;
+    bottom: 0;
+    content: "";
+    height: 3px;
+    left: 0;
+    position: absolute;
+    right: 0
+}
+
+.table .sorting:after,
+.table .sorting_asc:after,
+.table .sorting_desc:after{
+    border: 5px solid transparent;
+    border-top-color: #AD1982;
+    content: "";
+    display: inline-block;
+    margin: -3px 0 0 5px;
+    position: relative;
+    top: 3px;
+}
+
+.table .sorting_asc:after{
+    border-bottom-color: #AD1982;
+    border-top-color: transparent;
+    top: -3px;
+}
+
+
+
+/* ************************************
+Grid CSS ends here 
+************************************ */

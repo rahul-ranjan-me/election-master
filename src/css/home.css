@@ -1,0 +1,13 @@
+.first-column-home > div:first-child{
+  border-bottom: 1px solid #ccc;
+  padding-bottom:15px;
+  margin-bottom:15px;
+}
+
+.topRow-home > div{
+  border-left: 1px solid #ccc;
+}
+
+.topRow-home > div:first-child{
+  border-left: none;
+}

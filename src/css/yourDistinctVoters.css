@@ -1,0 +1,13 @@
+.yourDistinctVoters{
+    text-align: center
+}
+
+.yourDistinctVoters h3{
+    margin-top: 0
+}
+
+.yourDistinctVoters .badge{
+    font-size: 50px;
+    padding: 24px 8px;
+    border-radius: 200px;
+}

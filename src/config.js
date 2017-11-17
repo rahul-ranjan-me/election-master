@@ -1,5 +1,5 @@
 const config = {
-  apiBaseURL : 'http://localhost:4000/api/v0/'
+  apiBaseURL : 'https://election-master-service.herokuapp.com/api/v0/'
 , setToken : (token) => {
     if (token) {
       window.localStorage.setItem('token', token);

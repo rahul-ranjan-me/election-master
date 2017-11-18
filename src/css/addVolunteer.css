@@ -11,3 +11,8 @@
     display: inline-block;
     float: left;
 }
+
+.add-volunteer-form .control-group:last-child{
+    clear:both;
+    width:100%;
+}

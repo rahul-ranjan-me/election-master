@@ -142,14 +142,14 @@ export class TypeTextarea extends Component {
 	render(){
 		return(
 			<div className="control-group">
-				<label className="control-label" htmlFor={this.props.field.id}>{this.props.field.label}</label>
 				<div className="controls">
 					<TextField
 						id={this.props.field.id} 
 						floatingLabelText={this.props.field.label}
 						value = {this.state[this.props.field.id]}
 						label={this.props.field.label}
-						rowsMax="4"
+						rowsMax={4}
+						multiLine={true}
 						onChange={this.handleChange}
 						defaultValue={this.props.field.value ? this.props.field.value:undefined} 
 						ref="textareainput"

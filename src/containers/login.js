@@ -75,7 +75,7 @@ class Login extends Component{
         browserHistory.push('home')
       }
     , error: (err) => {
-        this.setState({'error': err.responseJSON.error})
+        this.setState({'error': err.responseJSON ? err.responseJSON.error: 'Some error occured'})
       }
     })
     

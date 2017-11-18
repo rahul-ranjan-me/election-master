@@ -30,6 +30,12 @@ const volunteerForm = [
     'value': ''
   },
   {
+    'id' : 'address',
+    'label' : 'Address',
+    'type' : 'textarea',
+    'value': ''
+  },
+  {
     'id' : 'lokSabha',
     'label' : 'Lok Sabha',
     'type' : 'text',

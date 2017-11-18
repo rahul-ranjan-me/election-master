@@ -66,6 +66,7 @@ class AddVolunteer extends Component{
       lokSabha: '',
       vidhanSabha: '',
       pinCode: '',
+      address: '',
       twitterId: '',
       facebookId: '',
       password: '',
@@ -89,7 +90,7 @@ class AddVolunteer extends Component{
         browserHistory.push('home')
       }
     , error: (err) => {
-        this.setState({'error': err.responseJSON.error})
+        this.setState({'error': err.responseJSON ? err.responseJSON.error: 'Some error occured'})
       }
     })
   }

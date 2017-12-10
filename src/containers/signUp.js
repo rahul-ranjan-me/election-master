@@ -18,33 +18,6 @@ class AddVolunteer extends Component{
     this.metadata = metadata.slice();
     this.metadata.push( 
       {
-        'id' : 'originParty',
-        'label' : 'Origin Party',
-        'type' : 'select',
-        'options' : [
-          {
-            value : 'AAP',
-            label : 'AAP'
-          },
-          {
-            value : 'BJP',
-            label : 'BJP'
-          },
-          {
-            value : 'JDU',
-            label : 'JDU'
-          },
-          {
-            value : 'INC',
-            label : 'INC'
-          },
-          {
-            value : 'LJP',
-            label : 'LJP'
-          }
-        ]
-      },
-      {
         'id' : 'password',
         'label' : 'Password',
         'type' : 'password',

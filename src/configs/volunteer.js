@@ -64,7 +64,34 @@ const volunteerForm = [
     'label' : 'Facebook ID',
     'type' : 'text',
     'value': ''
-  }	
+  },
+  {
+    'id' : 'originParty',
+    'label' : 'Origin Party',
+    'type' : 'select',
+    'options' : [
+      {
+        value : 'AAP',
+        label : 'AAP'
+      },
+      {
+        value : 'BJP',
+        label : 'BJP'
+      },
+      {
+        value : 'JDU',
+        label : 'JDU'
+      },
+      {
+        value : 'INC',
+        label : 'INC'
+      },
+      {
+        value : 'LJP',
+        label : 'LJP'
+      }
+    ]
+  }
 ]
 
 export default volunteerForm

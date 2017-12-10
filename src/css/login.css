@@ -88,6 +88,15 @@
     border-radius: 5px;
 }
 
+.success{
+    padding: 10px;
+    background: #3c763d;
+    margin: 10px;
+    margin-bottom:0;
+    color: #fff;
+    border-radius: 5px;
+}
+
 .login-form .control-group{
     width: 100%;
     display: inline-block;

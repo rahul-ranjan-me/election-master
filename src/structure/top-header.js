@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { browserHistory, Link } from 'react-router'
 import { Navbar, Nav, NavDropdown, NavItem, MenuItem } from 'react-bootstrap'
 import config from '../config'
+import $ from 'jquery'
 import { login, logout } from '../actions/Login'
 import { bindActionCreators } from 'redux'
 import {connect} from 'react-redux'
@@ -11,11 +12,33 @@ class TopHeader extends Component{
     super()
     this.isLogin = this.getIsLogin()
     this.logout = this.logout.bind(this)
+    this.state = {
+      usersName: ''
+    }
   }
 
   componentWillReceiveProps(props){
     this.isLogin = this.getIsLogin()
     this.forceUpdate()
+  }
+
+  componentDidMount(){
+    if(this.isLogin){
+      $.ajax({
+        url:`${config.apiBaseURL}/users/me`
+      , method : 'get'
+      , contentType : "application/json"
+      , headers : {
+        'Authorization' : 'Token '+config.getToken()
+      }
+      , dataType: 'json'
+      , success : (response) => {
+          this.setState({
+            usersName : 'Welcome ' + response.name
+          })
+        }
+      })
+    }
   }
 
   getIsLogin(){
@@ -62,7 +85,7 @@ class TopHeader extends Component{
                 ]
               </Nav>
               <Nav pullRight>
-                <NavDropdown eventKey={7} title="Welcome Vijay" id="basic-nav-dropdown">
+                <NavDropdown eventKey={7} title={this.state.usersName} id="basic-nav-dropdown">
                   <MenuItem eventKey={7.1} onClick = {() => this.goToPage('profile')}>Your profile</MenuItem>
                   <MenuItem divider />
                   <MenuItem eventKey={7.2} onClick = {() => this.logout()}>Logout</MenuItem>

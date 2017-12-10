@@ -52,8 +52,7 @@ class Login extends Component{
     if (token) {
       if (location.query.redirectTo) {
         browserHistory.push(location.query.redirectTo);
-      }
-      else {
+      } else {
         browserHistory.push('/');
       }
     }

@@ -2,12 +2,20 @@ import React, {Component} from 'react'
 import { browserHistory, Link } from 'react-router'
 import { Navbar, Nav, NavDropdown, NavItem, MenuItem } from 'react-bootstrap'
 import config from '../config'
+import { login, logout } from '../actions/Login'
+import { bindActionCreators } from 'redux'
+import {connect} from 'react-redux'
 
-export default class TopHeader extends Component{
+class TopHeader extends Component{
   constructor(){
     super()
     this.isLogin = this.getIsLogin()
     this.logout = this.logout.bind(this)
+  }
+
+  componentWillReceiveProps(props){
+    this.isLogin = this.getIsLogin()
+    this.forceUpdate()
   }
 
   getIsLogin(){
@@ -18,7 +26,8 @@ export default class TopHeader extends Component{
   }
 
   logout(){
-    config.setToken();
+    config.setToken()
+    this.props.logout()
     this.goToPage('login')
   }
 
@@ -66,3 +75,16 @@ export default class TopHeader extends Component{
     )
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    login : login
+  , logout : logout
+  }, dispatch);
+}
+
+function mapStateToProps(state) {
+  return {token : state.loginListReducer.token}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopHeader);

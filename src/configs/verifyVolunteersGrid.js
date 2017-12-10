@@ -1,44 +1,56 @@
 function formatVerifyReinvite(obj, details){
-  return `Verify | Reinvite`
+  return `Reinvite`
 }
+
+const formatEmpty = function(obj, details){
+  if(details.length === 0){
+		return "-";
+	}else{
+    return details
+  }
+};
 
 const headers = {
   'name' : {
     "id" : "name",
-    "label" : "Name",
+    "label" : "Mobile no.",
     "sort" : true,
     "sorted" : true,
     "isHidden" : false,
+    "format" : formatEmpty,
     "width" : "20%"
   },
-  'mobile' : {
-    "id" : "mobile",
-    "label" : "Mobile No.",
+  'username' : {
+    "id" : "username",
+    "label" : "Name",
     "sort" : true,
     "isHidden" : false,
+    "format" : formatEmpty,
     "width" : "20%"
   },
   'email' : {
-      "id" : "email",
-      "label" : "Email",
-      "sort" : true,
-      "isHidden" : false,
-      "width" : "20%"
+    "id" : "email",
+    "label" : "Email",
+    "sort" : true,
+    "isHidden" : false,
+    "format" : formatEmpty,
+    "width" : "20%"
   },
-  'electionID' : {
-      "id" : "electionID",
-      "label" : "Election Id",
-      "sort" : true,
-      "isHidden" : false,
-      "width" : "20%"
+  'voterId' : {
+    "id" : "voterId",
+    "label" : "Election Id",
+    "sort" : true,
+    "isHidden" : false,
+    "format" : formatEmpty,
+    "width" : "20%"
   },
-  'verifyReinvite' : {
-      "id" : "verifyReinvite",
-      "label" : "Verify / Reinvite",
-      "sort" : false,
-      "isHidden" : false,
-      "format" : formatVerifyReinvite,
-      "width" : "20%"
+  'reinvite' : {
+    "id" : "reinvite",
+    "label" : "Reinvite",
+    "sort" : false,
+    "isHidden" : false,
+    "format" : formatVerifyReinvite,
+    "width" : "20%"
   }
 }
 

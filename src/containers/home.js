@@ -57,7 +57,7 @@ class Home extends Component{
           </Col>
         </Row>
         <Row>
-          <Col  md={12}>
+          <Col md={12}>
             <QuickAddVolunteers />
           </Col>
         </Row>
@@ -74,7 +74,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators(HomeActions, dispatch);
+  return bindActionCreators(HomeActions);
 }
 
 Home.displayName = 'Home';

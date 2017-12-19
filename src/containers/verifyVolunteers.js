@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Grid } from 'react-bootstrap'
-import $ from 'jquery'
+import AuthenticatedPage from '../containers/AuthenticatedPage';
 import Table from '../components/grid'
 import headers from '../configs/verifyVolunteersGrid'
 import candidateList from '../jsons/verifyVolunteers'
@@ -71,4 +71,4 @@ function mapStateToProps(state) {
   return {invitedUsers : state.inviteListReducer}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(VerifyVolunteers);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthenticatedPage(VerifyVolunteers));

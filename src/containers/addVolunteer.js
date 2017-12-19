@@ -3,10 +3,11 @@ import { browserHistory } from 'react-router'
 import $ from 'jquery'
 import config from '../config'
 import Form from '../components/form'
+import AuthenticatedPage from '../containers/AuthenticatedPage'
 import metadata from '../configs/volunteer'
 import Snackbar from 'material-ui/Snackbar'
 
-import { newInvite } from '../actions/invite';
+import { newInvite, getInvites } from '../actions/invite';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -35,6 +36,12 @@ class AddVolunteer extends Component{
       error: null,
       success: null,
       snackStatus: false
+    }
+  }
+
+  componentDidMount(){
+    if(!this.props.invitedUsers){
+      this.props.getInvites()
     }
   }
 
@@ -85,6 +92,7 @@ class AddVolunteer extends Component{
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     newInvite : newInvite
+  , getInvites: getInvites
   }, dispatch);
 }
 
@@ -92,4 +100,4 @@ function mapStateToProps(state) {
   return {invitedUsers : state.inviteListReducer}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddVolunteer);
+export default connect(mapStateToProps, mapDispatchToProps)(AuthenticatedPage(AddVolunteer));

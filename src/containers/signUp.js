@@ -3,7 +3,7 @@ import { Link, browserHistory } from 'react-router'
 import Form from '../components/form'
 import metadata from '../configs/volunteer'
 import config from '../config'
-import $ from 'jquery'
+import { signup } from '../promises'
 import { addVolunteer } from '../actions/Login';
 import {bindActionCreators} from 'redux';
 import _ from 'lodash';
@@ -53,19 +53,12 @@ class AddVolunteer extends Component{
   }
   
   submitData(data){
-    $.ajax({
-      url:`${config.apiBaseURL}/users/register`
-    , method : 'post'
-    , data : JSON.stringify(this.dataStructure)
-    , contentType : "application/json"
-    , dataType: 'json'
-    , success : (response) => {
-        browserHistory.push('home')
-      }
-    , error: (err) => {
-        this.setState({'error': err.responseJSON ? err.responseJSON.error: 'Some error occured'})
-      }
-    })
+    signup(JSON.stringify(this.dataStructure))
+      .then((response) => browserHistory.push('home'))
+      .catch((err) => {
+        const errorJSON = JSON.parse(JSON.stringify(err))
+        this.setState({'error': errorJSON.response.data.error ? errorJSON.response.data.error : 'Some error occured'})
+      })
   }
 
   render(){

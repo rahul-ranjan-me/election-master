@@ -3,7 +3,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import allReducers from './reducers';
 import Layout from './structure/outer-structure';
 import Home from './containers/home'
@@ -20,6 +21,9 @@ import 'bootstrap/dist/css/bootstrap-theme.min.css';
 import {cyan500} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import { getInvites } from './actions/invite';
+
 const muiTheme = getMuiTheme({
   palette: {
     textColor: cyan500,
@@ -29,8 +33,7 @@ const muiTheme = getMuiTheme({
   },
 });
 
-
-const store = createStore(allReducers);
+const store = createStore(allReducers, applyMiddleware(thunk));
 
 ReactDOM.render(
   <MuiThemeProvider>

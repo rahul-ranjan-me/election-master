@@ -6,9 +6,15 @@ import Form from '../components/form'
 import metadata from '../configs/volunteer'
 import Snackbar from 'material-ui/Snackbar'
 
+import { newInvite } from '../actions/invite';
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import { addInvitee } from '../promises'
+
 require('../css/addVolunteer.css')
 
-export default class AddVolunteer extends Component{
+class AddVolunteer extends Component{
   constructor(){
     super()
     this.dataStructure = {
@@ -40,27 +46,17 @@ export default class AddVolunteer extends Component{
   
   submitData(data){
     data.phoneNumber = data.username
-    $.ajax({
-      url:`${config.apiBaseURL}/users/invite`
-    , method : 'post'
-    , data : JSON.stringify(data)
-    , contentType : "application/json"
-    , headers : {
-      'Authorization' : 'Token '+config.getToken()
-    }
-    , dataType: 'json'
-    , success : (response) => {
-        this.setState({
-          snackStatus: true,
-          success: this.voluneerMessage
-        });
-        window.setTimeout(() => browserHistory.push('verifyVolunteers'), 3000)
-      }
-    , error: (err) => {
-      console.log(err)
-        this.setState({'error': err.responseJSON ? err.responseJSON.error: 'Some error occured'})
-      }
-    })
+    addInvitee(data).then((response) => {
+      this.setState({
+        snackStatus: true,
+        success: this.voluneerMessage
+      });
+      this.props.newInvite(response.data)
+      window.setTimeout(() => browserHistory.push('verifyVolunteers'), 3000)
+    }).catch((err) => {
+      const errorJSON = JSON.parse(JSON.stringify(err))
+      this.setState({'error': errorJSON.response.data.error ? errorJSON.response.data.error : 'Some error occured'})
+    }) 
   }
 
   render(){
@@ -85,3 +81,15 @@ export default class AddVolunteer extends Component{
     )
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    newInvite : newInvite
+  }, dispatch);
+}
+
+function mapStateToProps(state) {
+  return {invitedUsers : state.inviteListReducer}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddVolunteer);

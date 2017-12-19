@@ -5,9 +5,14 @@ import Table from '../components/grid'
 import headers from '../configs/verifyVolunteersGrid'
 import candidateList from '../jsons/verifyVolunteers'
 import config from '../config'
+
+import { getInvites } from '../actions/invite'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
 require('../css/verifyVolunteers.css')
 
-export default class VerifyVolunteers extends Component{
+class VerifyVolunteers extends Component{
   constructor(){
     super()
     this.state = {
@@ -16,27 +21,19 @@ export default class VerifyVolunteers extends Component{
   }
 
   componentDidMount(){
-    $.ajax({
-      url:`${config.apiBaseURL}/users/invite?userActive=false`
-    , method : 'get'
-    , contentType : "application/json"
-    , headers : {
-      'Authorization' : 'Token '+config.getToken()
+    if(!this.props.invitedUsers){
+      this.props.getInvites()
+    }else{
+      this.setState({candidateList: this.getInactiveUsers(this.props.invitedUsers)})
     }
-    , dataType: 'json'
-    , success : (response) => {
-        response.map((data) => {
-          delete data.avatar
-          data.reinvite = 'Reinvite'
-        })
-        this.setState({
-          candidateList : response
-        })
-      }
-    , error: (err) => {
-        this.setState({'error': err.responseJSON ? err.responseJSON.error: 'Some error occured'})
-      }
-    })
+  }
+  
+  componentWillReceiveProps(nextProps){
+    this.setState({candidateList: this.getInactiveUsers(nextProps.invitedUsers)})
+  }
+
+  getInactiveUsers(users){
+    return users.filter(user => {return !user.userActive})
   }
 
   onSelected(selectedRow){
@@ -44,17 +41,34 @@ export default class VerifyVolunteers extends Component{
   }
 
   render(){
+    const { candidateList } = this.state
+    
     return(
       <Grid>
         <h3>Verify Volunteers</h3>
         <p>Pleasae select a volunteer to verify or re-invite</p>
-        <Table 
-          headers = {headers}
-          rows = {this.state.candidateList}
-          collapsible = {false}
-          cssStyle = {{width: "100%"}}
-          onSelected = {this.onSelected}/>
+        { candidateList.length  > 0 ? 
+          <Table 
+            headers = {headers}
+            rows = {this.state.candidateList}
+            collapsible = {false}
+            cssStyle = {{width: "100%"}}
+            onSelected = {this.onSelected}/>
+          : <p>No volunteer invited or pending</p>
+        }
       </Grid>
     )
   }
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    getInvites: getInvites
+  }, dispatch);
+}
+
+function mapStateToProps(state) {
+  return {invitedUsers : state.inviteListReducer}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VerifyVolunteers);

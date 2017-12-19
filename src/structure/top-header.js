@@ -19,10 +19,15 @@ class TopHeader extends Component{
 
   componentWillReceiveProps(props){
     this.isLogin = this.getIsLogin()
+    this.getUserDetails()
     this.forceUpdate()
   }
 
   componentDidMount(){
+    this.getUserDetails()
+  }
+
+  getUserDetails(){
     if(this.isLogin){
       $.ajax({
         url:`${config.apiBaseURL}/users/me`

@@ -28,17 +28,17 @@ const headers = {
     "format" : formatEmpty,
     "width" : "20%"
   },
-  'email' : {
-    "id" : "email",
-    "label" : "Email",
+  'voterId' : {
+    "id" : "voterId",
+    "label" : "Election Id",
     "sort" : true,
     "isHidden" : false,
     "format" : formatEmpty,
     "width" : "20%"
   },
-  'voterId' : {
-    "id" : "voterId",
-    "label" : "Election Id",
+  'email' : {
+    "id" : "email",
+    "label" : "Email",
     "sort" : true,
     "isHidden" : false,
     "format" : formatEmpty,

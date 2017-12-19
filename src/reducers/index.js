@@ -5,7 +5,7 @@ import loginListReducer from './login';
 // import registerReducer from './register';
 
 const allReducers = combineReducers({
-	inviteList: inviteListReducer,
+	inviteListReducer: inviteListReducer,
 	homeListReducer : homeListReducer,
 	loginListReducer : loginListReducer
 });

@@ -4,10 +4,11 @@ import $ from 'jquery'
 import Divider from 'material-ui/Divider';
 import config from '../config'
 import Form from '../components/form'
+import { login as loginPromise } from '../promises'
 import { login, logout } from '../actions/Login';
 import {bindActionCreators} from 'redux';
 import _ from 'lodash';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 require('../css/login.css')
 
@@ -59,25 +60,21 @@ class Login extends Component{
   }
   
   submitData(data){
-    $.ajax({
-      url:`${config.apiBaseURL}/users/login`
-    , method : 'post'
-    , data : JSON.stringify(data)
-    , contentType : "application/json"
-    , dataType: 'json'
-    , success : (response) => {
-        config.setToken(response.token);
-        this.props.login(response.token)
+    loginPromise(data)
+      .then((response) => {
+        const { token } = response.data
+        console.log(token)
+        config.setToken(token);
+        this.props.login(token)
         this.setState({
-          auth: response.token
+          auth: token
         })
         browserHistory.push('home')
-      }
-    , error: (err) => {
-        this.setState({'error': err.responseJSON ? err.responseJSON.error: 'Some error occured'})
-      }
-    })
-    
+      })
+      .catch((err) => {
+        const errorJSON = JSON.parse(JSON.stringify(err))
+        this.setState({'error': errorJSON.response.data.error ? errorJSON.response.data.error : 'Some error occured'})
+      })
   }
 
   render(){
@@ -108,7 +105,8 @@ class Login extends Component{
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    login : login
+    loginPromise: loginPromise
+  , login : login
   , logout : logout
   }, dispatch);
 }

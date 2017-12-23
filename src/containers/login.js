@@ -63,7 +63,6 @@ class Login extends Component{
     loginPromise(data)
       .then((response) => {
         const { token } = response.data
-        console.log(token)
         config.setToken(token);
         this.props.login(token)
         this.setState({

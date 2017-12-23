@@ -103,7 +103,6 @@ class quickAddVolunteers extends Component{
 
   render(){
     const { error, success } = this.state
-    console.log(this.metadata)
     return(
       <div className="quickAddVolunteers">
         <h3><Glyphicon glyph="plus" /> Add Volunteers</h3>

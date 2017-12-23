@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Grid, Row, Col } from 'react-bootstrap'
+import _ from 'lodash';
 
 import YourVolunteers from '../components/yourVolunteers'
 import EventParticipated from '../components/eventParticipated'
@@ -8,17 +9,16 @@ import YourDistinctVoters from '../components/yourDistinctVoters'
 import UpcomingEvents from '../components/upcomingEvents'
 import QuickAddVolunteers from '../components/quickAddVolunteer'
 import InviteVolunteerForEvent from '../components/inviteVolunteerForEvent'
-import * as HomeActions from '../actions/HomeActions';
 import AuthenticatedPage from '../containers/AuthenticatedPage';
-import {bindActionCreators} from 'redux';
-import _ from 'lodash';
-import {connect} from 'react-redux';
+
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 require('../css/home.css')
 
 class Home extends Component{
-  componentDidMount(){
-    
+  constructor(){
+    super()
   }
 
   render(){
@@ -66,17 +66,12 @@ class Home extends Component{
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({}, dispatch);
+}
 
 function mapStateToProps(state) {
-  return {
-    token: state.token
-  };
+  return {}
 }
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(HomeActions);
-}
-
-Home.displayName = 'Home';
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthenticatedPage(Home));

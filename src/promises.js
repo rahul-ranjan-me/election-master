@@ -5,6 +5,10 @@ const login = function(data){
   return postCall('/users/login', data, false)
 }
 
+const userDetails = function(){
+  return getCall('/users/me', true)
+}
+
 const signup = function(data){
   return postCall('/users/register', data, false)
 }
@@ -55,4 +59,5 @@ export {
 , signup
 , inviteeList
 , addInvitee
+, userDetails
 }

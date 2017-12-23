@@ -68,7 +68,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return {invitedUsers : state.inviteListReducer}
+  return {invitedUsers : state.inviteList}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthenticatedPage(VerifyVolunteers));

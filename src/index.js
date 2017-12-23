@@ -43,7 +43,7 @@ ReactDOM.render(
           <IndexRoute component={ Home } />
           <Route path="verifyVolunteers" component={ VerifyVolunteers } />
           <Route path="addVolunteer" component={ AddVolunteer } />
-          <Route path="signup" component={ Signup } />
+          <Route path="signup/:id" component={ Signup } />
           <Route path="home" component={ Home } />
           <Route path="login" component={ Login } />
           <Route path="profile" component={ Profile } />

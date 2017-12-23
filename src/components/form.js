@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import _ from 'lodash';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
@@ -16,10 +17,16 @@ export default class Form extends Component{
 	}
 
 	componentWillReceiveProps(nextProps){
-		if(nextProps.metadata !== this.state.metadata){
+		var isEqual = _.isEqual(nextProps.metadata, this.state.metadata)
+		nextProps.metadata.forEach((node) => {
+			this.valueToSend[node.id] = node.value
+		})
+		if(!isEqual){
+			
 			this.setState({
 				metadata : nextProps.metadata
 			})
+			
 		}
 	}
 
@@ -33,7 +40,6 @@ export default class Form extends Component{
 	}
 
 	render(){
-		
 		let createForm = (fieldType, key) => {
 			if(fieldType.type === 'text'){
 				return <TypeText key={key} field = {fieldType} onChange={this.handleChange} />
@@ -81,6 +87,8 @@ export class TypeText extends Component {
 					<TextField
 						id={this.props.field.id} 
 						floatingLabelText={this.props.field.label}
+						hintText={this.props.field.value}
+						floatingLabelFixed={true}
 						value = {this.state[this.props.field.id]}
 						label={this.props.field.label}
 						onChange={this.handleChange}
@@ -116,6 +124,7 @@ export class TypePassword extends Component {
 						value = {this.state[this.props.field.id]}
 						label={this.props.field.label}
 						onChange={this.handleChange}
+						floatingLabelFixed={true}
 						defaultValue={this.props.field.value ? this.props.field.value:undefined} 
 						ref="password"
 						type="password" 
@@ -146,9 +155,11 @@ export class TypeTextarea extends Component {
 					<TextField
 						id={this.props.field.id} 
 						floatingLabelText={this.props.field.label}
+						hintText={this.props.field.value}
 						value = {this.state[this.props.field.id]}
 						label={this.props.field.label}
 						rowsMax={4}
+						floatingLabelFixed={true}
 						multiLine={true}
 						onChange={this.handleChange}
 						defaultValue={this.props.field.value ? this.props.field.value:undefined} 

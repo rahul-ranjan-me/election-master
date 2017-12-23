@@ -93,7 +93,7 @@ class Login extends Component{
                 cssClassName="login-form" /> 
             </div>
             <div className="signup">
-              <p>New to the system? Click here to <Link to="signup">Signup</Link></p>
+              <p>New to the system? Click here to <Link to="/signup/new">Signup</Link></p>
             </div>
           </div>
         </div>

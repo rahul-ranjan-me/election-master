@@ -72,7 +72,7 @@ class Login extends Component{
       })
       .catch((err) => {
         const errorJSON = JSON.parse(JSON.stringify(err))
-        this.setState({'error': errorJSON.response.data.error ? errorJSON.response.data.error : 'Some error occured'})
+        this.setState({'error': errorJSON.response.data && errorJSON.response.data.error ? errorJSON.response.data.error : 'Some error occured'})
       })
   }
 

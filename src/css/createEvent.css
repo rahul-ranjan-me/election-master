@@ -1,0 +1,24 @@
+.add-event-container{
+    overflow: hidden;
+    padding:0 50px
+}
+
+.add-event-form input[type="text"]{
+    width: 90%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 
+}
+
+.add-event-form .control-group{
+    margin-bottom: 15px;
+    width: 50%;
+    display: inline-block;
+    float: left;
+    padding-right:15px
+}
+
+.add-event-form .control-group:last-child{
+    clear:both;
+    width:100%;
+}

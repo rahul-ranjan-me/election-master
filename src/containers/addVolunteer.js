@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
-import $ from 'jquery'
 import config from '../config'
 import Form from '../components/form'
 import AuthenticatedPage from '../containers/AuthenticatedPage'
@@ -62,7 +61,7 @@ class AddVolunteer extends Component{
       window.setTimeout(() => browserHistory.push('verifyVolunteers'), 3000)
     }).catch((err) => {
       const errorJSON = JSON.parse(JSON.stringify(err))
-      this.setState({'error': errorJSON.response.data.error ? errorJSON.response.data.error : 'Some error occured'})
+      this.setState({'error': errorJSON.response && errorJSON.response.data && errorJSON.response.data.error ? errorJSON.response.data.error : 'Some error occured'})
     }) 
   }
 

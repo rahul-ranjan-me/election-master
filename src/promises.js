@@ -39,6 +39,10 @@ const addInvitee = function(data){
   return postCall('/users/invite', data, true)
 } 
 
+const createEvent = function(data){
+  return postCall('/event', data, true)
+}
+
 const postCall = function(url, data, token){
   const axiosData = {
     url: `${config.apiBaseURL}${url}`
@@ -80,4 +84,5 @@ export {
 , userDetails
 , userDetailsSignup
 , userVerify
+, createEvent
 }

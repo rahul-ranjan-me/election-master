@@ -85,7 +85,7 @@ class TopHeader extends Component{
                     <MenuItem eventKey={3.2} key={3.2}>Haryana MCD</MenuItem>
                     <MenuItem eventKey={3.3} key={3.3}>Gujrat State</MenuItem>
                     <MenuItem divider />
-                    <MenuItem eventKey={3.4} key={3.4}>Center Election</MenuItem>
+                    <MenuItem eventKey={3.4} key={3.4} onClick = {() => this.goToPage('createEvent')}>Create new event</MenuItem>
                   </NavDropdown>
                 ]
               </Nav>

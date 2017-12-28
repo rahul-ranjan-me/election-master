@@ -53,6 +53,12 @@ const eventForm = [
     'label' : 'Venue',
     'type' : 'text',
     'value': ''
+  },
+  {
+    'id' : 'eventDate',
+    'label' : 'Date',
+    'type' : 'text',
+    'value': ''
   }
 ]
 

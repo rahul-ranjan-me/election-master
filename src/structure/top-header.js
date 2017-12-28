@@ -81,11 +81,9 @@ class TopHeader extends Component{
                   <NavItem eventKey={2} key={2} onClick = {() => this.goToPage('addVolunteer')} href="#">Add Volunteer</NavItem>
                   ,<NavItem eventKey={4} key={4} onClick = {() => this.goToPage('verifyVolunteers')} href="verifyVolunteers">Verify/Update Volunteer</NavItem>
                   ,<NavDropdown eventKey={3} key={3} title="Events" id="basic-nav-dropdown">
-                    <MenuItem eventKey={3.1} key={3.1}>MLA Election</MenuItem>
-                    <MenuItem eventKey={3.2} key={3.2}>Haryana MCD</MenuItem>
-                    <MenuItem eventKey={3.3} key={3.3}>Gujrat State</MenuItem>
-                    <MenuItem divider />
                     <MenuItem eventKey={3.4} key={3.4} onClick = {() => this.goToPage('createEvent')}>Create new event</MenuItem>
+                    <MenuItem divider />
+                    <MenuItem eventKey={3.5} key={3.5} onClick = {() => this.goToPage('eventManagement')}>Event Management</MenuItem>
                   </NavDropdown>
                 ]
               </Nav>

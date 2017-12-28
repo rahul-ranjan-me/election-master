@@ -43,6 +43,10 @@ const createEvent = function(data){
   return postCall('/event', data, true)
 }
 
+const getEvents = function(token){
+  return getCall('/event', true)
+}
+
 const postCall = function(url, data, token){
   const axiosData = {
     url: `${config.apiBaseURL}${url}`
@@ -85,4 +89,5 @@ export {
 , userDetailsSignup
 , userVerify
 , createEvent
+, getEvents
 }

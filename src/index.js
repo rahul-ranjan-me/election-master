@@ -14,6 +14,7 @@ import Profile from './containers/profile'
 import Signup from './containers/signUp'
 import Login from './containers/login'
 import CreateEvent from './containers/createEvent'
+import EventManagement from './containers/eventManagement'
 import registerServiceWorker from './registerServiceWorker';
 //http://www.templatemonsterpreview.com/65839.html
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -49,6 +50,7 @@ ReactDOM.render(
           <Route path="login" component={ Login } />
           <Route path="profile" component={ Profile } />
           <Route path="createEvent" component={ CreateEvent } />
+          <Route path="eventManagement" component={ EventManagement } />
         </Route>
       </Router>
     </Provider>

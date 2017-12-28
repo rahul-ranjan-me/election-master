@@ -7,11 +7,12 @@ import metadata from '../configs/event'
 import Form from '../components/form'
 import { createEvent } from '../promises'
 
+import { getAllEvents, createEventAction } from '../actions/events';
 import {bindActionCreators} from 'redux';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
-require('../css/createEvent.css')
+require('../css/event.css')
 
 class CreateEvent extends Component{
   constructor(){
@@ -34,6 +35,9 @@ class CreateEvent extends Component{
 
   componentDidMount() {
     this.redirectIfAuthed(this.props);
+    if(!this.props.events){
+      this.props.getAllEvents()
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -58,11 +62,15 @@ class CreateEvent extends Component{
                 snackStatus: true,
                 success: this.eventMessage
             });
-            window.setTimeout(this.setState({success: null}, 4000))
+            this.props.createEventAction(res.data)
+            window.setTimeout( () => {
+              this.setState({success: null})
+              browserHistory.push('eventManagement')
+            }, 4000)
         }).catch((err) => {
             const errorJSON = JSON.parse(JSON.stringify(err))
             this.setState({'error': errorJSON.response && errorJSON.response.data && errorJSON.response.data.error ? errorJSON.response.data.error : 'Some error occured'})
-            window.setTimeout(this.setState({error: null}, 4000))
+            window.setTimeout(this.setState({error: null}), 4000)
         }) 
   }
 
@@ -92,7 +100,8 @@ class CreateEvent extends Component{
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    
+    getAllEvents: getAllEvents
+  , createEventAction: createEventAction
   }, dispatch);
 }
 

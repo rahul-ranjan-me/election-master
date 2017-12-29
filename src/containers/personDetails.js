@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Input, Row, Col, Divider } from 'antd/dist/antd.min'
 import { browserHistory } from 'react-router'
+import moment from 'moment'
 import AuthenticatedPage from '../containers/AuthenticatedPage'
 import config from '../config'
 import { getUserDetails } from '../promises'
@@ -81,7 +82,7 @@ class PeopleSearchResult extends Component{
               </li>
               <li>
                 <span>Joining date</span>
-                <strong>{creationDate ? creationDate : '-'}</strong>
+                <strong>{creationDate ? moment(creationDate).format('DD-MMM-YYYY') : '-'}</strong>
               </li>
               <li>
                 <span>Email</span>

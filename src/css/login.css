@@ -67,7 +67,8 @@
 }
 
 .login-block h3{
-    margin:0
+    margin:0;
+    margin-bottom:10px
 }
 
 .login-form input[type="text"],
@@ -77,6 +78,10 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 5px 
+}
+
+.login-form  .button-primary button{
+    width: 100%
 }
 
 .error{
@@ -98,9 +103,6 @@
 }
 
 .login-form .control-group{
-    width: 100%;
-    display: inline-block;
-    float: left;
     padding:5px;
 }
 

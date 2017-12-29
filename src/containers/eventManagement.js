@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Collapsible from 'react-collapsible';
+import { Collapse, Card } from 'antd/dist/antd.min'
 import { browserHistory } from 'react-router'
 import AuthenticatedPage from '../containers/AuthenticatedPage'
 import config from '../config'
@@ -8,6 +8,8 @@ import { getAllEvents } from '../actions/events';
 import {bindActionCreators} from 'redux';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+
+const Panel = Collapse.Panel;
 
 require('../css/event.css')
 
@@ -54,15 +56,17 @@ class EventManagement extends Component{
 
   renderEvents(event, k){
     return (
-      <Collapsible trigger={event.name} key={k}>
-        <ul>
-          <li><span>Level:</span> {event.eventLevel}</li>
-          <li><span>Organizer:</span> {event.organizer}</li>
-          <li><span>Venue:</span> {event.eventVenue}</li>
-          {event.eventDate ? <li><span>Date:</span> {event.eventDate}</li> : null}
-          <li><span>Volunteers Coming:</span> {event.eventVolunteerRequired}</li>
-        </ul>
-      </Collapsible>
+      <Collapse style={{marginTop:k === 0 ? 0 : 15}}>
+          <Panel header={event.name} key={k}>
+            <ul>
+              <li><span>Level:</span> {event.eventLevel}</li>
+              <li><span>Organizer:</span> {event.organizer}</li>
+              <li><span>Venue:</span> {event.eventVenue}</li>
+              {event.eventDate ? <li><span>Date:</span> {event.eventDate}</li> : null}
+              <li><span>Volunteers Coming:</span> {event.eventVolunteerRequired}</li>
+            </ul>
+          </Panel>
+      </Collapse>
     )
   }
 
@@ -79,20 +83,29 @@ class EventManagement extends Component{
 
     return(
       <div className="event-management">
-        <h3>Current Events</h3>
-        <h4>My Events</h4>
-        <div className="events">
-          {events.myEvents.length ? events.myEvents[0].map(this.renderEvents) : null}
-        </div>
+        <Card title="Events">
+          
+          <Card
+            type="inner"
+            title="My Events">
+            {events.myEvents.length ? events.myEvents[0].map(this.renderEvents) : null}
+          </Card>
 
-        <h4>My Parent Events</h4>
+          <Card
+            type="inner"
+            title="Events from whom I am following"
+            style={{marginTop:20}}>
+            {parentEventsArr.length  > 0 ? parentEventsArr.map((key) => this.parentChildEvents(key, events.parentEvents)): <p>No parents events found</p>}
+          </Card>
 
-        {parentEventsArr.length  > 0 ? parentEventsArr.map((key) => this.parentChildEvents(key, events.parentEvents)): <p>No parents events found</p>}
+          <Card
+            type="inner"
+            title="My followers Events"
+            style={{marginTop:20}}>
+          {childEventsArr.length  > 0 ? childEventsArr.map((key) => this.parentChildEvents(key, events.childEvents)): <p>No child events found</p>}
+          </Card>
 
-        <h4>My Children Events</h4>
-        {childEventsArr.length  > 0 ? childEventsArr.map((key) => this.parentChildEvents(key, events.childEvents)): <p>No child events found</p>}
-        
-        
+        </Card>
       </div>
     )
   }

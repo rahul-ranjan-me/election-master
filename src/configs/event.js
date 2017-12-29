@@ -57,7 +57,7 @@ const eventForm = [
   {
     'id' : 'eventDate',
     'label' : 'Date',
-    'type' : 'text',
+    'type' : 'date',
     'value': ''
   }
 ]

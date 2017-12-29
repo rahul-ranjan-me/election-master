@@ -47,6 +47,14 @@ const getEvents = function(token){
   return getCall('/event', true)
 }
 
+const searchPeople = function(query){
+  return getCall(`/users/searchPeople/${query}`, true)
+}
+
+const getUserDetails = function(query){
+  return getCall(`/users/getUserDetails/${query}`, true)
+}
+
 const postCall = function(url, data, token){
   const axiosData = {
     url: `${config.apiBaseURL}${url}`
@@ -90,4 +98,6 @@ export {
 , userVerify
 , createEvent
 , getEvents
+, searchPeople
+, getUserDetails
 }

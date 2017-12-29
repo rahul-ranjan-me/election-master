@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { Link, browserHistory } from 'react-router'
 import $ from 'jquery'
-import Divider from 'material-ui/Divider';
 import config from '../config'
 import Form from '../components/form'
 import { login as loginPromise } from '../promises'
-import { login, logout } from '../actions/Login';
-import {bindActionCreators} from 'redux';
-import _ from 'lodash';
-import { connect } from 'react-redux';
+import { login, logout } from '../actions/Login'
+import {bindActionCreators} from 'redux'
+import _ from 'lodash'
+import { connect } from 'react-redux'
 
 require('../css/login.css')
 

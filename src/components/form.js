@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
-import _ from 'lodash';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import React, {Component} from 'react'
+import _ from 'lodash'
+import { Button, Input, Select, DatePicker } from 'antd/dist/antd.min'
+
+const 	{ TextArea } = Input
+	,	Option = Select.Option
+	,	{ MonthPicker, RangePicker, WeekPicker } = DatePicker;
 
 export default class Form extends Component{
 	constructor(props){
@@ -48,7 +49,9 @@ export default class Form extends Component{
 			}else if(fieldType.type === 'textarea'){
 				return <TypeTextarea key={key} field = {fieldType} onChange={this.handleChange}  />
 			}else if(fieldType.type === 'select'){
-				return <Select key={key} field = {fieldType} onChange={this.handleChange}  />
+				return <SelectField key={key} field = {fieldType} onChange={this.handleChange}  />
+			}else if(fieldType.type === 'date'){
+				return <DateSelector key={key} field = {fieldType} onChange={this.handleChange}  />
 			}else if(fieldType.type === 'subForm'){
 				return <Subform key={key} field = {fieldType} onChange={this.handleChange}  />
 			}
@@ -56,10 +59,12 @@ export default class Form extends Component{
 
 		return (
 			<form className={this.props.cssClassName} onSubmit={this.sendData}>
-				{this.state.metadata.map(createForm)}
+				<div className="form-field-container">
+					{this.state.metadata.map(createForm)}
+				</div>
 				<div className="control-group button-primary">
 					<div className="controls">
-						<RaisedButton label="Submit" primary={true} onClick={this.sendData} fullWidth={true} />
+						<Button type="primary" shape="shape" size="large" onClick={this.sendData}>Submit</Button>
 					</div>
 				</div>
 			</form>
@@ -84,17 +89,14 @@ export class TypeText extends Component {
 		return(
 			<div className="control-group">
 				<div className="controls">
-					<TextField
+					<label htmlFor={this.props.field.id}>{this.props.field.label}</label>
+					<Input
 						id={this.props.field.id} 
-						floatingLabelText={this.props.field.label}
-						hintText={this.props.field.value}
-						floatingLabelFixed={true}
 						value = {this.state[this.props.field.id]}
-						label={this.props.field.label}
 						onChange={this.handleChange}
-						defaultValue={this.props.field.value ? this.props.field.value:undefined} 
+						placeholder={this.props.field.value ? this.props.field.value:undefined} 
 						ref="textInput"
-						fullWidth={true}
+						size="large"
 						/>
 				</div>
 			</div>
@@ -118,17 +120,15 @@ export class TypePassword extends Component {
 		return(
 			<div className="control-group">
 				<div className="controls">
-					<TextField
+					<label htmlFor={this.props.field.id}>{this.props.field.label}</label>
+					<Input
 						id={this.props.field.id} 
-						floatingLabelText={this.props.field.label}
 						value = {this.state[this.props.field.id]}
-						label={this.props.field.label}
 						onChange={this.handleChange}
-						floatingLabelFixed={true}
-						defaultValue={this.props.field.value ? this.props.field.value:undefined} 
+						placeholder={this.props.field.value ? this.props.field.value:undefined} 
 						ref="password"
 						type="password" 
-						fullWidth={true}
+						size="large"
 						/>
 				</div>
 			</div>
@@ -152,19 +152,15 @@ export class TypeTextarea extends Component {
 		return(
 			<div className="control-group">
 				<div className="controls">
-					<TextField
+					<label htmlFor={this.props.field.id}>{this.props.field.label}</label>
+					<TextArea
 						id={this.props.field.id} 
-						floatingLabelText={this.props.field.label}
-						hintText={this.props.field.value}
 						value = {this.state[this.props.field.id]}
-						label={this.props.field.label}
-						rowsMax={4}
-						floatingLabelFixed={true}
-						multiLine={true}
+						rows={4}
 						onChange={this.handleChange}
-						defaultValue={this.props.field.value ? this.props.field.value:undefined} 
+						placeholder={this.props.field.value ? this.props.field.value:undefined} 
 						ref="textareainput"
-						fullWidth={true}
+						size="large"
 						/>
 				</div>
 			</div>
@@ -172,7 +168,7 @@ export class TypeTextarea extends Component {
 	}
 }
 
-export class Select extends Component {
+export class SelectField extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -181,27 +177,58 @@ export class Select extends Component {
 		this.handleChange = this.handleChange.bind(this);
 	}
 
-	handleChange(event, index, value){
+	handleChange(value){
 		this.props.onChange(value, this.props.field);
 		this.setState({value})
 	}
 
 	render(){
 		let createOption = (option, key) => {
-			return <MenuItem key={key} value={option.value} primaryText={option.label} />
+			return <Option key={key} value={option.value}>{option.label}</Option>
 		};
 
 		return(
 			<div className="control-group">
 				<div className="controls">
-					<SelectField
+					<label htmlFor={this.props.field.id}>{this.props.field.label}</label>
+					<Select
+						id={this.props.field.id}
 						floatingLabelText={this.props.field.label}
-						value={this.state.value}
+						defaultValue={this.props.field.value}
 						onChange={this.handleChange}
-						fullWidth={true}
 						>
 						{this.props.field.options.map(createOption)}
-					</SelectField>
+					</Select>
+				</div>
+			</div>
+		)
+	}
+}
+
+export class DateSelector extends Component {
+	constructor(props){
+		super(props);
+		this.handleChange = this.handleChange.bind(this);
+		this.state = {}
+	}
+
+	handleChange(date, dateString){
+		this.setState({[this.props.field.id]: dateString})
+		this.props.onChange(dateString, this.props.field);
+	}
+
+	render(){
+		return(
+			<div className="control-group">
+				<div className="controls">
+					<label htmlFor={this.props.field.id}>{this.props.field.label}</label>
+					<DatePicker
+						id={this.props.field.id} 
+						onChange={this.handleChange}
+						format="DD/MM/YYYY"
+						ref="textInput"
+						size="large"
+						/>
 				</div>
 			</div>
 		)

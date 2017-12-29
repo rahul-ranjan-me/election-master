@@ -7,6 +7,10 @@ html, body, #root, .top-component{
     margin-bottom:0;
 }
 
+.control-group label{
+    display: block
+}
+
 @media only screen and (max-width: 992px) {
     
     .row .first-column-home > div.topRow-home {

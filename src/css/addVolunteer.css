@@ -1,10 +1,23 @@
 .add-volunteer-container{
     overflow: hidden;
-    padding:0 50px
+    padding:0 50px;
 }
 
-.add-volunteer-form input[type="text"]{
-    width: 90%;
+.add-volunteer-form .form-field-container{
+    column-count: 2
+}
+
+.add-volunteer-form  .button-primary{
+    margin-top:30px;
+    width:100%;
+}
+
+.add-volunteer-form  .button-primary button{
+    width: 100%
+}
+
+.add-volunteer-form input[type="text"], .add-volunteer-form textarea, .add-volunteer-form .ant-select{
+    width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 5px 
@@ -12,9 +25,6 @@
 
 .add-volunteer-form .control-group{
     margin-bottom: 15px;
-    width: 50%;
-    display: inline-block;
-    float: left;
     padding-right:15px
 }
 

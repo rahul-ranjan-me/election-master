@@ -4,7 +4,7 @@ import config from '../config'
 import Form from '../components/form'
 import AuthenticatedPage from '../containers/AuthenticatedPage'
 import metadata from '../configs/volunteer'
-import Snackbar from 'material-ui/Snackbar'
+import { notification } from 'antd/dist/antd.min'
 
 import { newInvite, getInvites } from '../actions/invite';
 import { bindActionCreators } from 'redux'
@@ -53,6 +53,9 @@ class AddVolunteer extends Component{
   submitData(data){
     data.phoneNumber = data.username
     addInvitee(data).then((response) => {
+      notification['success']({
+        message: this.voluneerMessage,
+      });
       this.setState({
         snackStatus: true,
         success: this.voluneerMessage
@@ -77,12 +80,6 @@ class AddVolunteer extends Component{
           onSubmitData = { this.submitData.bind(this) } 
           dataFormat = { this.dataStructure } 
           cssClassName="add-volunteer-form" /> 
-        <Snackbar
-          open={this.state.snackStatus}
-          message={this.voluneerMessage}
-          autoHideDuration={4000}
-          onRequestClose={this.handleRequestClose}
-        />
       </div>
     )
   }

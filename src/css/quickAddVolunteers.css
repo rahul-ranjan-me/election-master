@@ -9,13 +9,27 @@
     margin-top: 0
 }
 
-.quick-invite-form input[type="text"]{
-    width: 80%;
-    padding: 5px;
+.quick-invite-form .form-field-container{
+    column-count: 1
+}
+
+.quick-invite-form  .button-primary{
+    margin-top:10px;
+    width:100%;
+}
+
+.quick-invite-form .button-primary button{
+    width:100%
+}
+
+.quick-invite-form input[type="text"], .quick-invite-form textarea, .quick-invite-form .ant-select{
+    width: 100%;
     border: 1px solid #ccc;
-    border-radius: 5px
+    border-radius: 5px;
+    padding: 5px 
 }
 
 .quick-invite-form .control-group{
-    margin-bottom: 10px
+    margin-bottom: 15px;
+    padding-right:15px
 }

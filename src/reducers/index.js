@@ -4,6 +4,7 @@ import homeListReducer from './home';
 import loginListReducer from './login'
 import userReducer from './user'
 import eventsList from './eventsList'
+import searchedUser from './search'
 // import registerReducer from './register'
 
 const allReducers = combineReducers({
@@ -12,6 +13,7 @@ const allReducers = combineReducers({
 , loginListReducer : loginListReducer
 , userDetails : userReducer
 , eventsList: eventsList
+, searchedUser: searchedUser
 });
 
 export default allReducers;

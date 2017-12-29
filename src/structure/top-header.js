@@ -77,19 +77,18 @@ class TopHeader extends Component{
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav>
-                [
-                  <NavItem eventKey={2} key={2} onClick = {() => this.goToPage('addVolunteer')} href="#">Add Volunteer</NavItem>
-                  ,<NavItem eventKey={4} key={4} onClick = {() => this.goToPage('verifyVolunteers')} href="verifyVolunteers">Verify/Update Volunteer</NavItem>
-                  ,<NavDropdown eventKey={3} key={3} title="Events" id="basic-nav-dropdown">
-                    <MenuItem eventKey={3.4} key={3.4} onClick = {() => this.goToPage('createEvent')}>Create new event</MenuItem>
+                  <NavItem eventKey={2} key={2} onClick = {() => this.goToPage('/addVolunteer')} href="#">Add Volunteer</NavItem>
+                  <NavItem eventKey={4} key={4} onClick = {() => this.goToPage('/verifyVolunteers')} href="/verifyVolunteers">Verify/Update Volunteer</NavItem>
+                  <NavItem eventKey={5} key={5} onClick = {() => this.goToPage('/organisationViewer')} href="/organisationViewer">Organisation Viewer</NavItem>
+                  <NavDropdown eventKey={3} key={3} title="Events" id="basic-nav-dropdown">
+                    <MenuItem eventKey={3.4} key={3.4} onClick = {() => this.goToPage('/createEvent')}>Create new event</MenuItem>
                     <MenuItem divider />
-                    <MenuItem eventKey={3.5} key={3.5} onClick = {() => this.goToPage('eventManagement')}>Event Management</MenuItem>
+                    <MenuItem eventKey={3.5} key={3.5} onClick = {() => this.goToPage('/eventManagement')}>Event Management</MenuItem>
                   </NavDropdown>
-                ]
               </Nav>
               <Nav pullRight>
                 <NavDropdown eventKey={7} title={this.state.usersName} id="basic-nav-dropdown">
-                  <MenuItem eventKey={7.1} onClick = {() => this.goToPage('profile')}>Your profile</MenuItem>
+                  <MenuItem eventKey={7.1} onClick = {() => this.goToPage('/profile')}>Your profile</MenuItem>
                   <MenuItem divider />
                   <MenuItem eventKey={7.2} onClick = {() => this.logout()}>Logout</MenuItem>
                 </NavDropdown>

@@ -5,7 +5,7 @@ import Form from './form'
 import BulkInvite from './bulkInvite'
 import ResendInvite from './resendInvite'
 
-import Snackbar from 'material-ui/Snackbar'
+import { notification } from 'antd/dist/antd.min'
 
 import { newInvite, getInvites } from '../actions/invite';
 import { bindActionCreators } from 'redux'
@@ -83,6 +83,9 @@ class quickAddVolunteers extends Component{
   submitData = (data) => {
     data.phoneNumber = data.username
     addInvitee(data).then((response) => {
+      notification['success']({
+        message: this.voluneerMessage,
+      });
       this.setState({
         snackStatus: true,
         success: this.voluneerMessage
@@ -117,12 +120,6 @@ class quickAddVolunteers extends Component{
                 onSubmitData={this.submitData} 
                 dataFormat = {this.dataStructure} 
                 cssClassName="quick-invite-form" /> 
-                <Snackbar
-                  open={this.state.snackStatus}
-                  message={this.voluneerMessage}
-                  autoHideDuration={4000}
-                  onRequestClose={this.handleRequestClose}
-                />
             </Col>
             <Col md={4}>
               <BulkInvite />

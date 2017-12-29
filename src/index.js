@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import allReducers from './reducers';
-import Layout from './structure/outer-structure';
+import Layout from './structure/outer-structure'; 
 import Home from './containers/home'
 import VerifyVolunteers from './containers/verifyVolunteers'
 import AddVolunteer from './containers/addVolunteer'
@@ -15,30 +15,20 @@ import Signup from './containers/signUp'
 import Login from './containers/login'
 import CreateEvent from './containers/createEvent'
 import EventManagement from './containers/eventManagement'
+import OrganisationViewer from './containers/organisationViewer'
+import PersonDetails from './containers/personDetails'
 import registerServiceWorker from './registerServiceWorker';
 //http://www.templatemonsterpreview.com/65839.html
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-theme.min.css';
-
-import {cyan500} from 'material-ui/styles/colors';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import 'antd/dist/antd.min.css';
 
 import { getInvites } from './actions/invite';
-
-const muiTheme = getMuiTheme({
-  palette: {
-    textColor: cyan500,
-  },
-  appBar: {
-    height: 50,
-  },
-});
 
 const store = createStore(allReducers, applyMiddleware(thunk));
 
 ReactDOM.render(
-  <MuiThemeProvider>
+
     <Provider store={ store }>
       <Router history={ browserHistory }>
         <Route path="/" component={ Layout }>
@@ -51,10 +41,12 @@ ReactDOM.render(
           <Route path="profile" component={ Profile } />
           <Route path="createEvent" component={ CreateEvent } />
           <Route path="eventManagement" component={ EventManagement } />
+          <Route path="organisationViewer" component={ OrganisationViewer } />
+          <Route path="person/:id" component={ PersonDetails } />
         </Route>
       </Router>
     </Provider>
-  </MuiThemeProvider>
+
   , document.getElementById('root'));
 
 registerServiceWorker();

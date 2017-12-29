@@ -1,0 +1,52 @@
+.organisation-viewer{
+    overflow: hidden;
+    padding:0 50px
+}
+
+.organisation-viewer .ant-list-item{
+    padding-left: 15px
+}
+
+.organisation-viewer .ant-list-item.disable{
+    background: rgba(191, 191, 191, 0.11);
+    opacity: .5
+}
+
+.details-container{
+    margin-top: 50px
+}
+
+.user-details-container{
+    margin-top:40px
+}
+
+.about-details{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.about-details li{
+    margin-bottom:10px;
+    clear: both;
+    float: left;
+    width: 100%
+}
+
+.about-details li span{
+    width: 200px;
+    float: left;
+    color: #0088ff
+}
+
+.about-details li strong{
+    font-weight: normal;
+    float: left;
+    position: relative;
+    top: 3px;
+}
+
+.search-people{
+    margin-bottom: 30px
+}

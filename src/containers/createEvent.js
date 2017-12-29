@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { browserHistory } from 'react-router'
-import Snackbar from 'material-ui/Snackbar'
+import { notification } from 'antd/dist/antd.min'
 import AuthenticatedPage from '../containers/AuthenticatedPage'
 import config from '../config'
 import metadata from '../configs/event'
@@ -58,8 +58,10 @@ class CreateEvent extends Component{
   submitData(data){
     createEvent(this.dataStructure)
         .then((res) => {
+            notification['success']({
+              message: this.eventMessage,
+            });
             this.setState({
-                snackStatus: true,
                 success: this.eventMessage
             });
             this.props.createEventAction(res.data)
@@ -87,12 +89,6 @@ class CreateEvent extends Component{
           onSubmitData = { this.submitData.bind(this) } 
           dataFormat = { this.dataStructure } 
           cssClassName="add-event-form" /> 
-        <Snackbar
-          open={this.state.snackStatus}
-          message={this.eventMessage}
-          autoHideDuration={4000}
-          onRequestClose={this.handleRequestClose}
-        />
       </div>
     )
   }

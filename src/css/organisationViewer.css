@@ -70,3 +70,7 @@
 .ant-list-item-meta-title p{
     margin-bottom:4px
 }
+
+.hierarchy-container .ant-spin-container{
+    overflow:initial
+}

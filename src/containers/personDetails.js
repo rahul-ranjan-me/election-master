@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Input, Row, Col, Divider } from 'antd/dist/antd.min'
+import { Input, Row, Col, Divider, List, Avatar } from 'antd/dist/antd.min'
 import { browserHistory } from 'react-router'
 import moment from 'moment'
 import AuthenticatedPage from '../containers/AuthenticatedPage'
 import config from '../config'
-import { getUserDetails } from '../promises'
+import { getUserDetails, getHierarchy } from '../promises'
 
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
@@ -18,22 +18,32 @@ class PeopleSearchResult extends Component{
     super()
     this.state = {
       searchedUser: {}
+    , hierarchyData: {
+        parentUser: {}
+      , childUser: []
+      }
     }
   }
 
   componentDidMount() {
     this.redirectIfAuthed(this.props);
+    const id = this.props.params.id;
+    getHierarchy(id).then((response) => {
+      this.setState({
+        hierarchyData: response.data
+      })
+    })
+
     if(Object.keys(this.props.searchedUser).length < 1){
-      this.setUserDetails()
+      this.setUserDetails(id)
     }else{
       this.setState({
-        searchedUser: this.props.searchedUser
+        searchedUser: this.props.searchedUser,
       })
     }
   }
 
-  setUserDetails(){
-    const id = this.props.params.id;
+  setUserDetails(id){
     getUserDetails(id).then((response) => {
       this.setState({
         searchedUser: response.data
@@ -43,10 +53,25 @@ class PeopleSearchResult extends Component{
 
   componentWillReceiveProps(nextProps) {
     this.redirectIfAuthed(nextProps);
+
+    const id = nextProps.params.id;
+    getHierarchy(id).then((response) => {
+      this.setState({
+        hierarchyData: response.data
+      })
+    })
+
+    this.setUserDetails(id)
+    
   }
 
   redirectIfAuthed(props) {
     var {location, token} = props;
+  }
+
+  goToPage(ev, item){
+    ev.preventDefault()
+    browserHistory.push(`/person/${item.username}`);
   }
 
   search(val){
@@ -54,9 +79,10 @@ class PeopleSearchResult extends Component{
   }
 
   render(){
-    const { searchedUser } = this.state
-    const { address, avatar, creationDate, email, fatherName, lokSabha, name, originParty, vidhanSabha } =  searchedUser 
+    const { searchedUser, hierarchyData } = this.state
+        , { address, avatar, creationDate, email, fatherName, username, lokSabha, name, originParty, vidhanSabha } =  searchedUser 
         , avatarUrl = avatar ? avatar.full_size : ''
+        , { parentUser, childUser } = hierarchyData
 
     return(
       <div className="organisation-viewer">
@@ -72,7 +98,7 @@ class PeopleSearchResult extends Component{
           <Col span={4}>
             <img src={avatarUrl} style={{width:'90%'}} />
           </Col>
-          <Col span={14}>
+          <Col span={11}>
             <h4>Contact Information</h4>
             <Divider dashed></Divider>
             <ul className="about-details">
@@ -81,12 +107,16 @@ class PeopleSearchResult extends Component{
                 <strong>{name}</strong>
               </li>
               <li>
-                <span>Joining date</span>
-                <strong>{creationDate ? moment(creationDate).format('DD-MMM-YYYY') : '-'}</strong>
-              </li>
-              <li>
                 <span>Email</span>
                 <strong>{email ? email : '-'}</strong>
+              </li>
+              <li>
+                <span>Phone number</span>
+                <strong>{username ? username : '-'}</strong>
+              </li>
+              <li>
+                <span>Joining date</span>
+                <strong>{creationDate ? moment(creationDate).format('DD-MMM-YYYY') : '-'}</strong>
               </li>
               <li>
                 <span>Address</span>
@@ -110,8 +140,52 @@ class PeopleSearchResult extends Component{
               </li>
             </ul>
           </Col>
-          <Col span={6}>
-            <h4>Orgainsational hierarchy</h4>
+          <Col span={9} className="hierarchy-container">
+           {Object.keys(parentUser).length ? <List
+              className="parent-user"
+              itemLayout="horizontal"
+              dataSource={[parentUser]}
+              renderItem={item => (
+                <List.Item>
+                  <List.Item.Meta
+                    avatar={<Avatar src={item.avatar ? item.avatar.full_size : 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'} />}
+                    title={item.userActive ? <a onClick={(ev) => this.goToPage(ev, item)} href={`/person/${item.username}`}>{item.name}</a> : <p>{item.name}</p>}
+                    description={`Phone number: ${item.username}`}
+                  />
+                </List.Item>
+              )}
+            />:null}
+
+            <List
+              className="current-user"
+              itemLayout="horizontal"
+              dataSource={[searchedUser]}
+              renderItem={item => (
+                <List.Item>
+                  <List.Item.Meta
+                    avatar={<Avatar src={item.avatar ? item.avatar.full_size : 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'} />}
+                    title={<p>{item.name}</p>}
+                    description={`Phone number: ${item.username}`}
+                  />
+                </List.Item>
+              )}
+            />
+
+            {childUser.length ? <List
+              className="child-user"
+              itemLayout="horizontal"
+              dataSource={childUser}
+              renderItem={item => (
+                <List.Item className={!item.userActive ? 'disable': null}>
+                  <List.Item.Meta
+                    avatar={<Avatar src={item.avatar ? item.avatar.full_size : 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'} />}
+                    title={item.userActive ? <a onClick={(ev) => this.goToPage(ev, item)} href={`/person/${item.username}`}>{item.name}</a> : <p>{item.name}</p>}
+                    description={`Phone number: ${item.username}`}
+                  />
+                </List.Item>
+              )}
+            /> : null }
+            
           </Col>
         </Row>
       </div>

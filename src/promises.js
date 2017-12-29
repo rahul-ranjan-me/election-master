@@ -55,6 +55,10 @@ const getUserDetails = function(query){
   return getCall(`/users/getUserDetails/${query}`, true)
 }
 
+const getHierarchy = function(query){
+  return getCall(`/users/getHierarchy/${query}`, true)
+}
+
 const postCall = function(url, data, token){
   const axiosData = {
     url: `${config.apiBaseURL}${url}`
@@ -100,4 +104,5 @@ export {
 , getEvents
 , searchPeople
 , getUserDetails
+, getHierarchy
 }

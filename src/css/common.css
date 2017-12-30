@@ -35,9 +35,4 @@ html, body, #root, .top-component{
         margin-top: 20px;
         border-top: 1px solid #ccc;
     }
-
-    .footer span.copyRight{
-        display: block;
-        float: none;
-    }
 }

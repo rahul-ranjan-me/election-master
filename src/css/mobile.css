@@ -1,0 +1,110 @@
+@media only screen and (max-width: 500px) {
+    #root .login-container-block{
+        width: 100%;
+    }
+
+    #root .login-block{
+        height: 100%;
+    }
+
+    #root .login-container{
+        vertical-align: top;
+        height: 100%;
+    }
+
+    #root .signup{
+        position: fixed;
+        bottom: 0;
+        width:100%;
+    }
+
+    #root .signup-scroll {
+        max-height: initial;
+        overflow-y: initial;
+    }
+
+    #root .signup-form .form-field-container,
+    #root .add-volunteer-form .form-field-container,
+    #root .form-field-container{
+        column-count: 1
+    }
+
+    .footer span.copyRight,
+    .footer .navbar-nav,
+    .footer .nav>li{
+        display: inline-block
+    }
+
+    #root .add-volunteer-container,
+    #root .add-event-container,
+    #root .event-management{
+        padding: 80px 10px 80px 25px
+    }
+
+    #root .organisation-viewer{
+        padding: 80px 15px
+    }
+
+    #root .footer.navbar-default{
+        position: fixed;
+        bottom: 0;
+        width: 100%
+    }
+
+    #root .navbar.navbar-inverse{
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 555;
+    }
+
+    #root .top-component > .container{
+        padding-bottom: 80px;
+        padding-top: 80px
+    }
+
+    #root .ant-col-4,
+    #root .ant-col-11,
+    #root .ant-col-9{
+        width:100%;
+        margin:20px 0;
+    }
+
+    #root .user-details-container{
+        margin-top:0
+    }
+
+    #root .user-details-container .ant-col-4 img{
+        width:40% !important;
+    }
+
+    #root .about-details li{
+        margin-bottom: 15px
+    }
+
+    #root .about-details li span,
+    #root .about-details li strong{
+        float: none;
+        display: block;
+        width: 100%
+    }
+
+    #root .about-details li strong{
+        margin-left: 5px
+    }
+
+    #root .ant-col-9.hierarchy-container:before{
+        content: 'Your organisation';
+        font-weight: bold;
+        padding-bottom: 18px;
+        clear: both;
+        display: block;
+        border-bottom: 1px dashed #ccc;
+        padding-top: 20px;
+        margin-top: -20px;
+        margin-bottom:20px;
+        color: rgba(0,0,0,.85);
+        font-size: 18px
+    }
+
+}

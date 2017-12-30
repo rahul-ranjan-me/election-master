@@ -29,6 +29,10 @@
         column-count: 1
     }
 
+    #root .resendInvite{
+        margin-top: 10px
+    }
+
     .footer span.copyRight,
     .footer .navbar-nav,
     .footer .nav>li{
